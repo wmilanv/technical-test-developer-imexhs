@@ -1,0 +1,27 @@
+<h2>Calculadora de Área de Mancha</h2>
+
+<input type="file" accept="image/*" (change)="onFileSelected($event)" />
+<br /><br />
+
+<img [src]="imageSrc" alt="Imagen cargada" style="max-width: 100%; max-height: 300px;" *ngIf="imageSrc" />
+
+<br /><br />
+
+<label>Número de puntos aleatorios:</label>
+<input type="range" min="100" max="10000" step="100" [(ngModel)]="points" />
+<span>{{ points }}</span>
+
+<br /><br />
+
+<button (click)="calculateArea()">Calcular Área</button>
+
+<div *ngIf="area !== null">
+  <h3>Área estimada: {{ area.toFixed(2) }} píxeles²</h3>
+</div>
+
+<h4>Historial:</h4>
+<ul>
+  <li *ngFor="let entry of history">
+    Puntos: {{ entry.points }} → Área: {{ entry.area.toFixed(2) }} píxeles²
+  </li>
+</ul>
